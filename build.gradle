@@ -1,0 +1,54 @@
+plugins {
+    id("java")
+    id("org.jetbrains.intellij") version "1.17.2"
+}
+// 插件的一些基本信息，按实际情况填写
+group = "cn.taosx"
+version = "1.0"
+
+repositories {
+    mavenCentral()
+}
+
+// Configure Gradle IntelliJ Plugin
+// Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
+intellij {
+    version = "2024.1"
+//    type = "IC" // Target IDE Platform（IC=社区版；IU=企业版）
+    // 沙箱目录位置，用于保存IDEA的设置，默认在build文件下面，防止clean，放在用户目录下
+    sandboxDir = System.getProperty("user.home") + "/idea-plugins-sandbox"
+    // 依赖的插件，例如某插件需要基于com.intellij.database插件至上是用，这里就需要添加database插件依赖
+    plugins = [/* Plugin Dependencies */]
+    updateSinceUntilBuild = false
+}
+
+tasks.withType(JavaCompile.class).configureEach(task -> {
+    task.getOptions().setEncoding("UTF-8");
+    sourceCompatibility = "17";
+    targetCompatibility = "17";
+});
+
+tasks.patchPluginXml {
+    // 注意这个版本号不能高于上面intellij的version，否则runIde会报错
+    sinceBuild.set("232")
+    untilBuild.set("242.*")
+}
+//tasks.signPlugin {
+//    certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
+//    privateKey.set(System.getenv("PRIVATE_KEY"))
+//    password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+//}
+//tasks.publishPlugin {
+//    token.set(System.getenv("PUBLISH_TOKEN"))
+//}
+dependencies {
+    implementation 'com.squareup.okhttp3:okcurl:4.12.0'
+
+//    implementation("io.github.binance:binance-connector-java:3.2.0")
+}
+
+patchPluginXml{
+    changeNotes = """
+      Add change notes here.<br>
+      <em>most HTML tags may be used</em>"""
+}
