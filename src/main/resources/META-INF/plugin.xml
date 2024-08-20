@@ -35,7 +35,29 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <statusBarWidgetFactory id="PriceWidgetFactory"
-                                implementation="cn.taosx.btcplugin.PriceWidgetFactory"
+                                implementation="cn.taosx.btcplugin.PriceStatusBarWidgetFactory"
                                 order="first"/>
+
+        <toolWindow id="PriceToolWindow"
+                    anchor="right"
+                    factoryClass="cn.taosx.btcplugin.PriceToolWindowFactory"/>
+
+        <applicationService
+                            serviceImplementation="cn.taosx.btcplugin.Configuration.PluginConfiguration" />
     </extensions>
+
+<!--    <application>-->
+<!--        <service>-->
+<!--            <serviceImplementation>cn.taosx.btcplugin.Configuration.PluginConfiguration</serviceImplementation>-->
+<!--        </service>-->
+<!--    </application>-->
+<!--    <applicationService>-->
+<!--        <serviceImplementation>cn.taosx.btcplugin.Configuration.PluginConfiguration</serviceImplementation>-->
+<!--    </applicationService>-->
+
+<!--    <application-components>-->
+<!--        <component>-->
+<!--            <implementation-class>cn.taosx.btcplugin.Configuration.PluginConfiguration</implementation-class>-->
+<!--        </component>-->
+<!--    </application-components>-->
 </idea-plugin>

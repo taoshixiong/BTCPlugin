@@ -46,9 +46,3 @@ dependencies {
 
 //    implementation("io.github.binance:binance-connector-java:3.2.0")
 }
-
-patchPluginXml{
-    changeNotes = """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
-}
